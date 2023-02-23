@@ -3,8 +3,6 @@ import styles from "@/styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Roboto } from "@next/font/google";
 import Landingpage from "../../components/landingpage";
-import Sidebar from "../../components/sidebar";
-
 const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
@@ -21,7 +19,6 @@ export default function Home() {
       </Head>
       <main className={roboto.className}>
         <Landingpage />
-        <Sidebar />
       </main>
     </>
   );
