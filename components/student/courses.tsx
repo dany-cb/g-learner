@@ -7,6 +7,7 @@ export default function Courses() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  let nice = "Computer Architecture";
   return (
     <Content style={{ margin: "0 16px" }}>
       <Breadcrumb style={{ margin: "16px 0" }}>
@@ -27,20 +28,22 @@ export default function Courses() {
       >
         <Row gutter={[8, 16]}>
           <Col span={8}>
-            <Card
-              style={{ width: 300 }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
-              }
-              hoverable={true}
-              title="Card title"
-              bordered={true}
-            >
-              Computer Architecture
-            </Card>
+            <Link href={`/courses/${nice}`}>
+              <Card
+                style={{ width: 300 }}
+                cover={
+                  <img
+                    alt="example"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  />
+                }
+                hoverable={true}
+                title="Card title"
+                bordered={true}
+              >
+                Computer Architecture
+              </Card>
+            </Link>
           </Col>
           <Col span={8}>
             <Card
