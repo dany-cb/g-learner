@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { SettingFilled } from "@ant-design/icons";
+import { SettingFilled, HomeFilled } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme, Input, Avatar } from "antd";
+import { Layout, Menu, theme, Input, Avatar } from "antd";
+import Courses from "./courses";
+import Feed from "./feed";
+import Quiz from "./quiz";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Footer, Sider } = Layout;
 const { Search } = Input;
+let element: any;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -30,14 +34,29 @@ const items: MenuItem[] = [
     getItem("Pending", "4"),
     getItem("Pending", "5"),
   ]),
+  getItem("Quiz", "6", <SettingFilled />),
 ];
 
 const Sidebar: React.FC = () => {
+  const [current, setCurrent] = useState("1");
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
   const onSearch = (value: string) => console.log(value);
+
+  const onClick: MenuProps["onClick"] = (e) => {
+    console.log("click ", e);
+    setCurrent(e.key);
+  };
+
+  if (current === "1") {
+    element = <Courses />;
+  } else if (current === "2") {
+    element = <Feed />;
+  } else if (current === "6") {
+    element = <Quiz />;
+  }
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -62,6 +81,7 @@ const Sidebar: React.FC = () => {
           </Avatar>
         </div>
         <Menu
+          onClick={onClick}
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
@@ -82,21 +102,7 @@ const Sidebar: React.FC = () => {
             }}
           />
         </Header>
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-            }}
-          >
-            Bill is a cat.
-          </div>
-        </Content>
+        {element}
         <Footer style={{ textAlign: "center" }}>
           G-learner ©2023 Created by Scuderia
         </Footer>
