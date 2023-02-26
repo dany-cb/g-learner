@@ -1,15 +1,15 @@
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Account from "../components/Account";
+import Account from "./Account";
 
-const Landingpage = () => {
+const Login = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
 
   return (
     <>
       <main className="">
-        <div className="bg-dark">
+        <div className="">
           <h4 className="text-center">Login</h4>
           {!session ? (
             <Auth
@@ -46,4 +46,4 @@ const Landingpage = () => {
   );
 };
 
-export default Landingpage;
+export default Login;

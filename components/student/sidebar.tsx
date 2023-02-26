@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { SettingFilled, HomeFilled } from "@ant-design/icons";
+import { SettingFilled } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Layout, Menu, theme, Input, Avatar } from "antd";
-import Courses from "./courses";
-import Feed from "./feed";
-import Quiz from "./quiz";
+import { Layout, Menu, Avatar } from "antd";
+import Router from "next/router";
 
-const { Header, Footer, Sider } = Layout;
-const { Search } = Input;
-let element: any;
+const { Sider, Footer } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -32,82 +28,65 @@ const items: MenuItem[] = [
   getItem("Assignment", "sub1", <SettingFilled />, [
     getItem("Ongoing", "3"),
     getItem("Pending", "4"),
-    getItem("Pending", "5"),
+    getItem("Completed", "5"),
   ]),
   getItem("Quiz", "6", <SettingFilled />),
 ];
 
-const Sidebar: React.FC = () => {
-  const [current, setCurrent] = useState("1");
+interface Props {
+  children: React.ReactNode;
+}
+
+const Sidebar: React.FC<Props> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-  const onSearch = (value: string) => console.log(value);
 
   const onClick: MenuProps["onClick"] = (e) => {
     console.log("click ", e);
-    setCurrent(e.key);
+    if (e.key === "1") {
+      Router.push("/courses");
+    } else if (e.key === "2") {
+      Router.push("/feed");
+    } else if (e.key === "6") {
+      Router.push("/quiz");
+    }
   };
 
-  if (current === "1") {
-    element = <Courses />;
-  } else if (current === "2") {
-    element = <Feed />;
-  } else if (current === "6") {
-    element = <Quiz />;
-  }
-
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={(value) => setCollapsed(value)}
-      >
-        <div>
-          <Avatar
-            size={50}
-            style={{
-              color: "#2596be",
-              fontSize: 25,
-              marginTop: 20,
-              marginLeft: 18,
-              marginBottom: 20,
-              border: "1px solid #2596be",
-            }}
-          >
-            G
-          </Avatar>
-        </div>
-        <Menu
-          onClick={onClick}
-          theme="dark"
-          defaultSelectedKeys={["1"]}
-          mode="inline"
-          items={items}
-        />
-      </Sider>
-      <Layout className="site-layout">
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Search
-            placeholder="Search here"
-            allowClear
-            onSearch={onSearch}
-            style={{
-              width: 450,
-              height: 150,
-              marginTop: 20,
-              marginLeft: 50,
-            }}
+    <>
+      <Layout style={{ minHeight: "100vh" }}>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+        >
+          <div>
+            <Avatar
+              size={50}
+              style={{
+                color: "#2596be",
+                fontSize: 25,
+                marginTop: 20,
+                marginLeft: 18,
+                marginBottom: 20,
+                border: "1px solid #2596be",
+              }}
+            >
+              G
+            </Avatar>
+          </div>
+          <Menu
+            onClick={onClick}
+            theme="dark"
+            defaultSelectedKeys={["1"]}
+            mode="inline"
+            items={items}
           />
-        </Header>
-        {element}
-        <Footer style={{ textAlign: "center" }}>
-          G-learner ©2023 Created by Scuderia
-        </Footer>
+        </Sider>
+        <Layout className="site-layout" style={{ minHeight: "100vh" }}>
+          {children}
+        </Layout>
       </Layout>
-    </Layout>
+    </>
   );
 };
 
