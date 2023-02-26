@@ -49,81 +49,39 @@ const Courses = () => {
               color: "black",
             }}
           >
-            <Row gutter={[8, 16]}>
-              <Col span={8}>
-                <Link href={`/courses/${nice}`}>
-                  <Card
-                    style={{ width: 300 }}
-                    cover={
-                      <Image
-                        width={300}
-                        height={200}
-                        alt="example"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                      />
-                    }
-                    hoverable={true}
-                    title="Card title"
-                    bordered={true}
+            <Row
+              gutter={[50, 30]}
+              className="d-flex justify-content-center align-items-center"
+            >
+              {[1, 2, 3, 4, 5, 6].map((item, i) => (
+                <Col key={i}>
+                  <Link
+                    href={`/courses/${nice}`}
+                    className="text-decoration-none"
                   >
-                    Computer Architecture
-                  </Card>
-                </Link>
-              </Col>
-              <Col span={8}>
-                <Card
-                  style={{ width: 300 }}
-                  cover={
-                    <Image
-                      width={300}
-                      height={200}
-                      alt="example"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                  }
-                  hoverable={true}
-                  title="Card title"
-                  bordered={true}
-                >
-                  Computer Architecture
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card
-                  style={{ width: 300 }}
-                  cover={
-                    <Image
-                      width={300}
-                      height={200}
-                      alt="example"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                  }
-                  hoverable={true}
-                  title="Card title"
-                  bordered={true}
-                >
-                  Computer Architecture
-                </Card>
-              </Col>
-              <Col span={8}>
-                <Card
-                  style={{ width: 300 }}
-                  cover={
-                    <Image
-                      width={300}
-                      height={200}
-                      alt="example"
-                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                    />
-                  }
-                  hoverable={true}
-                  title="Card title"
-                  bordered={true}
-                >
-                  Computer Architecture
-                </Card>
-              </Col>
+                    <Card
+                      style={{ width: 300 }}
+                      className="border"
+                      cover={
+                        <Image
+                          width={300}
+                          height={200}
+                          alt="example"
+                          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                        />
+                      }
+                      hoverable={true}
+                      title="CS8491"
+                      bordered={true}
+                    >
+                      <div className="text-center">
+                        <h6>Computer Architecture</h6>
+                        <p className="mb-0">Semester IV</p>
+                      </div>
+                    </Card>
+                  </Link>
+                </Col>
+              ))}
             </Row>
           </div>
         </Content>

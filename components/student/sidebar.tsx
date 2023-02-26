@@ -4,7 +4,7 @@ import type { MenuProps } from "antd";
 import { Layout, Menu, Avatar } from "antd";
 import Router from "next/router";
 
-const { Sider, Footer } = Layout;
+const { Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
