@@ -1,6 +1,7 @@
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "./Account";
+import { Card } from "antd";
 
 const Login = () => {
   const session = useSession();
@@ -8,8 +9,8 @@ const Login = () => {
 
   return (
     <>
-      <main className="">
-        <div className="">
+      <main className="vh-100 d-flex justify-content-center align-items-center">
+        <Card style={{ width: 300 }} className="custom-card">
           <h4 className="text-center">Login</h4>
           {!session ? (
             <Auth
@@ -34,13 +35,13 @@ const Login = () => {
                   },
                 },
               }}
-              appearance={{ theme: ThemeSupa }}
-              theme="dark"
+              // appearance={{ theme: ThemeSupa }}
+              theme="light"
             />
           ) : (
             <Account session={session} />
           )}
-        </div>
+        </Card>
       </main>
     </>
   );
