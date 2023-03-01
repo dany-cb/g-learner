@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SettingFilled } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Layout, Menu, Avatar } from "antd";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 const { Sider } = Layout;
 
@@ -39,15 +39,17 @@ interface Props {
 
 const Sidebar: React.FC<Props> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const router = useRouter();
 
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
+    console.dir(e);
+
     if (e.key === "1") {
-      Router.push("/courses");
+      router.push("/courses");
     } else if (e.key === "2") {
-      Router.push("/feed");
+      router.push("/feed");
     } else if (e.key === "6") {
-      Router.push("/quiz");
+      router.push("/quiz");
     }
   };
 
