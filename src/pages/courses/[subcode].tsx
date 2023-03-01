@@ -3,12 +3,12 @@ import { Layout, Input, Breadcrumb, theme, Card, Col, Row } from "antd";
 import { HomeFilled } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
-import { course } from "../../../assets/data/course";
+import { useRouter } from "next/router";
 
-const Courses = () => {
+const Subcode = () => {
   const { Header, Content, Footer } = Layout;
   const { Search } = Input;
-  const { names } = course;
+  const router = useRouter();
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -36,7 +36,10 @@ const Courses = () => {
               <HomeFilled style={{ paddingLeft: 5 }} />
             </Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item> My Courses</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link href="/courses">My Courses</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>subcode</Breadcrumb.Item>
         </Breadcrumb>
         <div
           style={{
@@ -46,40 +49,7 @@ const Courses = () => {
             color: "black",
           }}
         >
-          <Row
-            gutter={[50, 30]}
-            className="d-flex justify-content-center align-items-center"
-          >
-            {names.map((item, i) => (
-              <Col key={i}>
-                <Link
-                  href={`/courses/${item.subcode}`}
-                  className="text-decoration-none"
-                >
-                  <Card
-                    style={{ width: 300 }}
-                    className="border"
-                    cover={
-                      <Image
-                        width={300}
-                        height={200}
-                        alt="example"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                      />
-                    }
-                    hoverable={true}
-                    title={item.subcode}
-                    bordered={true}
-                  >
-                    <div className="text-center">
-                      <h6>{item.title}</h6>
-                      <p className="mb-0">Semester {item.semester}</p>
-                    </div>
-                  </Card>
-                </Link>
-              </Col>
-            ))}
-          </Row>
+          hello buddy this is dynamic page of
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
@@ -89,4 +59,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export default Subcode;

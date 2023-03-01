@@ -4,7 +4,6 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
 } from "@ant-design/icons";
-import BaseLayout from "components/BaseLayout";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -114,7 +113,7 @@ const Feed = () => {
           G-learner ©2023 Created by Scuderia
         </Footer>
       </Layout>
-      </>
+    </>
   );
 };
 
