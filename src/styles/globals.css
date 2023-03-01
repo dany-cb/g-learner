@@ -2,7 +2,7 @@
 
 body,
 html {
-  background-color: #222;
+  background-color: #fefefe;
 }
 
 h1,
@@ -53,125 +53,6 @@ span {
 ::-webkit-scrollbar-corner {
   display: none;
 }
-
-/* .custom-card {
-  background-color: grey;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.custom-card:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 80px rgba(0, 128, 255, 0.6);
-} */
-
-/* .custom-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  animation: glow-animation 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow-animation {
-  0% {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 80px rgba(0, 128, 255, 0.6);
-  }
-  100% {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  }
-} */
-
-/* .custom-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  transition: box-shadow 0.3s ease-in-out;
-  position: relative;
-  overflow: hidden;
-}
-
-.custom-card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  bottom: -50%;
-  right: -50%;
-  background-color: rgba(0, 128, 255, 0.2);
-  transform: rotate(45deg);
-  z-index: -1;
-  animation: glow 3s linear infinite;
-}
-
-@keyframes glow {
-  0% {
-    transform: rotate(0deg);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  }
-  100% {
-    transform: rotate(360deg);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 80px rgba(0, 128, 255, 0.6);
-  }
-}
-
-.custom-card:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 80px rgba(0, 128, 255, 0.6);
-} */
-
-/* .custom-card {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(0, 128, 255, 0.3);
-  transition: box-shadow 0.3s ease-in-out;
-  position: relative;
-}
-
-.custom-card::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  bottom: -10px;
-  left: -10px;
-  right: -10px;
-  background-color: #0080ff;
-  z-index: -1;
-  border-radius: 20px;
-  opacity: 0;
-  animation: glow 2s ease-in-out infinite;
-}
-
-@keyframes glow {
-  0% {
-    opacity: 0;
-    box-shadow: 0 0 0 rgba(0, 128, 255, 0.3);
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 40px rgba(0, 128, 255, 0.6);
-    transform: translateX(calc(-50% + 1px))
-      rotateZ(calc(-1deg - 1deg * random()));
-  }
-  100% {
-    opacity: 0;
-    box-shadow: 0 0 0 rgba(0, 128, 255, 0.3);
-  }
-}
-
-.custom-card:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), 0 0 80px rgba(0, 128, 255, 0.6);
-}
-
-.custom-card:hover::before {
-  opacity: 1;
-  animation: none;
-} */
 
 .custom-card {
   background-color: #fff;
@@ -282,4 +163,84 @@ span {
 .result p span {
   color: #800080;
   font-size: 22px;
+}
+
+.vh-75 {
+  height: 75vh;
+}
+
+.text-big {
+  font-size: 2.5rem;
+}
+
+.gradient-underline {
+  font-size: 2.5vw;
+}
+
+.gradient-underline:hover {
+  color: #ebebea;
+  text-decoration: none;
+}
+
+.gradient-underline::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: linear-gradient(60deg, #409cfe, #f687ff 100%);
+  content: "";
+  height: 4px;
+  transition: all 0.5s;
+  width: 100%;
+}
+
+.gradient-underline:hover::after {
+  width: 70%;
+}
+
+.btn-grad {
+  background: linear-gradient(60deg, #3689e1, #d233de 100%) !important;
+}
+
+.btn-grad:hover {
+  background: linear-gradient(60deg, #409cfe, #f687ff 100%) !important;
+  color: black;
+}
+
+.btn-grad-inv {
+  background: linear-gradient(60deg, #d233de, #3689e1 100%) !important;
+}
+
+.btn-grad-inv:hover {
+  background: linear-gradient(60deg, #f687ff, #409cfe 100%) !important;
+  color: black;
+}
+
+.btn-grey {
+  background-color: #e0dfdf;
+}
+
+.gradient-text {
+  background: linear-gradient(60deg, #176bc5, #d233de 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.dot-pattern {
+  background: linear-gradient(90deg, #f8f8f8 21px, transparent 1%) center,
+    linear-gradient(#f8f8f8 21px, transparent 1%) center, #a799cc;
+  background-size: 22.9px 22.9px;
+  height: 80vh;
+}
+
+.vh-50 {
+  height: 50vh;
+}
+
+.btn-profile {
+  height: 50px;
+  width: 50px;
 }

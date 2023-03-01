@@ -13,15 +13,21 @@ export default function App({
   pageProps,
 }: AppProps<{
   initialSession: Session;
-}>&{Component: {noBaseLayout:Boolean|undefined}}) {
+}> & { Component: { noBaseLayout: Boolean | undefined } }) {
   const [supabase] = useState(() => createBrowserSupabaseClient());
-  
+
   return (
     <SessionContextProvider
       supabaseClient={supabase}
       initialSession={pageProps.initialSession}
     >
-      {Component.noBaseLayout?<Component {...pageProps} />:<BaseLayout><Component {...pageProps} /></BaseLayout>}
+      {Component.noBaseLayout ? (
+        <Component {...pageProps} />
+      ) : (
+        <BaseLayout>
+          <Component {...pageProps} />
+        </BaseLayout>
+      )}
     </SessionContextProvider>
-  )
+  );
 }
