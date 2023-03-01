@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { SettingFilled } from "@ant-design/icons";
+import {
+  ExperimentFilled,
+  FolderOpenFilled,
+  DashboardFilled,
+  CodeSandboxCircleFilled,
+} from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Layout, Menu, Avatar } from "antd";
 import { useRouter } from "next/router";
+import style from "../../src/styles/Sidebar.module.css";
 
 const { Sider } = Layout;
 
@@ -23,14 +29,14 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("My Courses", "1", <SettingFilled />),
-  getItem("Feed", "2", <SettingFilled />),
-  getItem("Assignment", "sub1", <SettingFilled />, [
+  getItem("My Courses", "1", <FolderOpenFilled />),
+  getItem("Feed", "2", <CodeSandboxCircleFilled />),
+  getItem("Assignment", "sub1", <DashboardFilled />, [
     getItem("Ongoing", "3"),
     getItem("Pending", "4"),
     getItem("Completed", "5"),
   ]),
-  getItem("Quiz", "6", <SettingFilled />),
+  getItem("Quiz", "6", <ExperimentFilled />),
 ];
 
 interface Props {

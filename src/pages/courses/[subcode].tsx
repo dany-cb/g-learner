@@ -53,14 +53,14 @@ const Subcode = () => {
             color: "black",
           }}
         >
-          {names.map(
+          {names?.map(
             (item, i) =>
               item.subcode === name &&
-              item.material.map((items, j) => {
+              item.material?.map((items, j) => {
                 return (
                   <Collapse accordion key={i + j} expandIconPosition={"end"}>
                     <Panel header={items.title} key={j} className="mb-2">
-                      {items.links.map((it, k) => {
+                      {items.links?.map((it, k) => {
                         return (
                           <div key={k} className="d-flex">
                             <p className="me-3">{it.title}</p>
