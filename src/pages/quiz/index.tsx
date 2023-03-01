@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Layout, Breadcrumb, theme, Input } from "antd";
+import { Layout, Card, Breadcrumb, theme, Input } from "antd";
 import { HomeFilled } from "@ant-design/icons";
 import Link from "next/link";
-import BaseLayout from "components/BaseLayout";
 import { quiz } from "../../../assets/data/quiz";
-import "../../styles/Quiz.module.css";
+import style from "../../styles/Quiz.module.css";
 
 const Quiz = () => {
   const { Content, Header, Footer } = Layout;
@@ -81,16 +80,20 @@ const Quiz = () => {
         </Breadcrumb>
       </Header>
       <Layout>
-        <Content style={{ margin: "0 16px" }}>
+        <Content>
           <div
             style={{
-              padding: 24,
               minHeight: 360,
               background: colorBgContainer,
               color: "black",
             }}
+            className="p-5 d-flex justify-content-center align-items-center"
           >
-            <div className="quiz-container card">
+            <Card
+              className={`quiz-container border`}
+              hoverable={true}
+              bordered={true}
+            >
               {!showResult ? (
                 <div>
                   <div>
@@ -145,7 +148,7 @@ const Quiz = () => {
                   </p>
                 </div>
               )}
-            </div>
+            </Card>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>

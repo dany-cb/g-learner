@@ -58,16 +58,9 @@ const Courses = () => {
                   className="text-decoration-none"
                 >
                   <Card
-                    style={{ width: 300 }}
                     className="border"
-                    cover={
-                      <Image
-                        width={300}
-                        height={200}
-                        alt="example"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                      />
-                    }
+                    style={{ width: 300 }}
+                    cover={<Image alt="example" src={test} priority />}
                     hoverable={true}
                     title={item.subcode}
                     bordered={true}
