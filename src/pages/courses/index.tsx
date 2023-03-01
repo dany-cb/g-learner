@@ -4,6 +4,7 @@ import { HomeFilled } from "@ant-design/icons";
 import BaseLayout from "components/BaseLayout";
 import Link from "next/link";
 import Image from "next/image";
+import test from "../../../assets/images/test.png";
 
 const Courses = () => {
   const { Header, Content, Footer } = Layout;
@@ -60,16 +61,8 @@ const Courses = () => {
                     className="text-decoration-none"
                   >
                     <Card
-                      style={{ width: 300 }}
                       className="border"
-                      cover={
-                        <Image
-                          width={300}
-                          height={200}
-                          alt="example"
-                          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                        />
-                      }
+                      cover={<Image alt="example" priority src={test} />}
                       hoverable={true}
                       title="CS8491"
                       bordered={true}

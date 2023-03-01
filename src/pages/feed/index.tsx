@@ -7,6 +7,7 @@ import {
 import BaseLayout from "components/BaseLayout";
 import Link from "next/link";
 import Image from "next/image";
+import test from "../../../assets/images/test.png";
 
 const Feed = () => {
   const { Content, Header, Footer } = Layout;
@@ -59,11 +60,10 @@ const Feed = () => {
               >
                 <div className="d-flex justify-content-between align-items-center">
                   <Image
-                    width={300}
-                    height={200}
-                    className="rounded col-4 shadow-sm"
+                    className="rounded shadow-sm"
                     alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    priority
+                    src={test}
                   />
                   <div className="col-8 ms-3">
                     <div className="my-3">
