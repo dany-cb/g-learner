@@ -1,14 +1,17 @@
 import React from "react";
-import { Layout, Input, Breadcrumb, theme, Card, Col, Row } from "antd";
+import { Layout, Input, Breadcrumb, theme, Collapse } from "antd";
 import { HomeFilled } from "@ant-design/icons";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import { course } from "../../../assets/data/course";
 
 const Subcode = () => {
   const { Header, Content, Footer } = Layout;
   const { Search } = Input;
+  const { Panel } = Collapse;
+  const { names } = course;
   const router = useRouter();
+  let name = router.asPath.split("/")[2];
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -39,7 +42,7 @@ const Subcode = () => {
           <Breadcrumb.Item>
             <Link href="/courses">My Courses</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item>subcode</Breadcrumb.Item>
+          <Breadcrumb.Item>{name}</Breadcrumb.Item>
         </Breadcrumb>
         <div
           style={{
@@ -49,7 +52,9 @@ const Subcode = () => {
             color: "black",
           }}
         >
-          hello buddy this is dynamic page of
+          {names.map(
+            (item, i) => item.subcode === name && <p key={i}>hello world</p>
+          )}
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
