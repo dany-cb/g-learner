@@ -59,6 +59,7 @@ const Courses = () => {
                 >
                   <Card
                     className="border"
+                    style={{ width: 300 }}
                     cover={<Image alt="example" src={test} priority />}
                     hoverable={true}
                     title={item.subcode}
