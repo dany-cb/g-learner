@@ -18,7 +18,6 @@ const Courses = () => {
 
   return (
     <>
-      <BaseLayout>
         <Header style={{ padding: 0, background: colorBgContainer }}>
           <Search
             placeholder="Search here"
@@ -88,7 +87,6 @@ const Courses = () => {
         <Footer style={{ textAlign: "center" }}>
           G-learner ©2023 Created by Scuderia
         </Footer>
-      </BaseLayout>
     </>
   );
 };

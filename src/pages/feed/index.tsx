@@ -17,7 +17,7 @@ const Feed = () => {
   const onSearch = (value: string) => console.log(value);
 
   return (
-    <BaseLayout>
+    <>
       <Header style={{ padding: 0, background: colorBgContainer }}>
         <Search
           placeholder="Search here"
@@ -114,7 +114,7 @@ const Feed = () => {
           G-learner ©2023 Created by Scuderia
         </Footer>
       </Layout>
-    </BaseLayout>
+      </>
   );
 };
 
