@@ -2,24 +2,32 @@ export const course = {
   names: [
     {
       title: "computer architecture",
-      subcode: "CS8091 ",
+      subcode: "CS8091",
       semester: 5,
       material: [
         {
           title: "UNIT 1",
           links: [
-            { title: "Introduction", link1: "" },
-            { title: "basics of CA", link2: "" },
-            { title: "Primary Architecture", link3: "" },
+            { title: "Introduction", link: "" },
+            { title: "basics of CA", link: "" },
+            { title: "Primary Architecture", link: "" },
           ],
         },
         {
           title: "UNIT 2",
-          links: [{ link1: "" }, { link2: "" }, { link3: "" }],
+          links: [
+            { title: "Secondary Systems", link: "" },
+            { title: "MIPS", link: "" },
+            { title: "history of computers", link: "" },
+          ],
         },
         {
-          title: "UNIT 1",
-          links: [{ link1: "" }, { link2: "" }, { link3: "" }],
+          title: "UNIT 3",
+          links: [
+            { title: "Processor", link: "" },
+            { title: "Pipelining", link: "" },
+            { title: "Hardware Multithreading", link: "" },
+          ],
         },
       ],
     },

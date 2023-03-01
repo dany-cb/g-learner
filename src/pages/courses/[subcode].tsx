@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Input, Breadcrumb, theme, Collapse } from "antd";
-import { HomeFilled } from "@ant-design/icons";
+import { HomeFilled, FileFilled } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { course } from "../../../assets/data/course";
@@ -32,6 +32,7 @@ const Subcode = () => {
           }}
         />
       </Header>
+
       <Content style={{ margin: "0 16px" }}>
         <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
           <Breadcrumb.Item>
@@ -53,7 +54,28 @@ const Subcode = () => {
           }}
         >
           {names.map(
-            (item, i) => item.subcode === name && <p key={i}>hello world</p>
+            (item, i) =>
+              item.subcode === name &&
+              item.material.map((items, j) => {
+                return (
+                  <Collapse accordion key={i + j} expandIconPosition={"end"}>
+                    <Panel header={items.title} key={j} className="mb-2">
+                      {items.links.map((it, k) => {
+                        return (
+                          <div key={k} className="d-flex">
+                            <p className="me-3">{it.title}</p>
+                            <p>
+                              <Link href={it.link}>
+                                <FileFilled />
+                              </Link>
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </Panel>
+                  </Collapse>
+                );
+              })
           )}
         </div>
       </Content>
