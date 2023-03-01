@@ -1,6 +1,28 @@
 export const course = {
   names: [
-    { title: "computer architecture", subcode: "CS8091 ", semester: 5 },
+    {
+      title: "computer architecture",
+      subcode: "CS8091 ",
+      semester: 5,
+      material: [
+        {
+          title: "UNIT 1",
+          links: [
+            { title: "Introduction", link1: "" },
+            { title: "basics of CA", link2: "" },
+            { title: "Primary Architecture", link3: "" },
+          ],
+        },
+        {
+          title: "UNIT 2",
+          links: [{ link1: "" }, { link2: "" }, { link3: "" }],
+        },
+        {
+          title: "UNIT 1",
+          links: [{ link1: "" }, { link2: "" }, { link3: "" }],
+        },
+      ],
+    },
     { title: "database management", subcode: "CS8093", semester: 5 },
     {
       title: "Information Technology Essentials",
