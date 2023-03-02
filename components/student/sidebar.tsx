@@ -91,7 +91,20 @@ const Sidebar: React.FC<Props> = ({ children }) => {
           <Menu
             onClick={onClick}
             theme="dark"
-            defaultSelectedKeys={["1"]}
+            defaultSelectedKeys={
+              () => {
+                router.pathname === "/courses"
+                  ? ["1"]
+                  : router.pathname === "/feed"
+                  ? ["2"]
+                  ? router.pathname === "/assesments/ongoing"
+                  ? ["3"]
+                  ? router.pathname === "/assesments/pending"
+                  ? ["4"]
+                  ? router.pathname === "/assesments/completed"
+                  ? ["5"]
+              }
+            }
             mode="inline"
             items={items}
           />

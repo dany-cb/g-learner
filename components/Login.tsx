@@ -1,7 +1,6 @@
 import { useEffect } from "react";
-import { Auth, ThemeMinimal, ThemeSupa } from "@supabase/auth-ui-react";
+import { Auth, ThemeMinimal } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Account from "./Account";
 import { Card } from "antd";
 import { useRouter } from "next/router";
 
@@ -12,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (session) {
-      router.push("/profile");
+      router.push((router.query.previous as string) || "/");
     }
   }, [session]);
 

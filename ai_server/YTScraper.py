@@ -1,4 +1,3 @@
-from requests_html import HTMLSession
 from bs4 import BeautifulSoup as bs
 from typing import List
 import chromedriver_autoinstaller
@@ -68,7 +67,7 @@ class YTScraper:
         self.driver.close()
 
 
-# scraper = YTScraper(
-#     "sampling-distribution statistics central-limit-theorem density-curves probability sample-mean mean".split())
+scraper = YTScraper(
+    "sampling-distribution statistics central-limit-theorem density-curves probability sample-mean mean".split())
 
-# print(scraper.get_video_data())
+print(scraper.get_video_data())
