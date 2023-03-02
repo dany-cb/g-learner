@@ -1,7 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import { Layout, Collapse, Divider, Breadcrumb, theme } from "antd";
-import { HomeFilled } from "@ant-design/icons";
+import {
+  Layout,
+  Collapse,
+  Divider,
+  Breadcrumb,
+  theme,
+  Badge,
+  Avatar,
+} from "antd";
+import { HomeFilled, BellTwoTone } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 const { Header, Content, Footer } = Layout;
@@ -12,7 +20,30 @@ const Ongoing = () => {
   } = theme.useToken();
   return (
     <>
-      <Header style={{ padding: 0, background: colorBgContainer }} />
+      <Header
+        style={{ padding: 0, background: colorBgContainer }}
+        className="d-flex flex-row-reverse"
+      >
+        <div>
+          <Badge count={3} className="me-3" style={{ fontSize: "13px" }}>
+            <Avatar
+              size={35}
+              shape="circle"
+              style={{ backgroundColor: "white" }}
+              icon={
+                <BellTwoTone style={{ fontSize: "22px" }} className="mb-3" />
+              }
+            />
+          </Badge>{" "}
+          <Avatar
+            style={{ backgroundColor: "#f56a00", verticalAlign: "middle" }}
+            size={35}
+            className="me-5"
+          >
+            U
+          </Avatar>
+        </div>
+      </Header>
       <Content style={{ margin: "0 16px" }}>
         <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
           <Breadcrumb.Item>
@@ -37,13 +68,13 @@ const Ongoing = () => {
             <h4 className="mb-0">CS8425 Computer Architecture</h4>
           </Divider>
           <Collapse bordered={false}>
-            <Panel header="This is default size panel header" key="1">
+            <Panel header="unit 1 Journal Assignment" key="1">
               <p>Sadddddd</p>
             </Panel>
-            <Panel header="This is default size panel header" key="2">
+            <Panel header="Unit 2 group acitivity" key="2">
               <p>Sadddddd</p>
             </Panel>
-            <Panel header="This is default size panel header" key="3">
+            <Panel header="Unit 2 quiz" key="3">
               <p>Sadddddd</p>
             </Panel>
           </Collapse>

@@ -55,11 +55,13 @@ const Sidebar: React.FC<Props> = ({ children }) => {
     } else if (e.key === "2") {
       router.push("/feed");
     } else if (e.key === "3") {
-      router.push("/assesments/ongoing");
+      router.push("/assessments/ongoing");
     } else if (e.key === "4") {
-      router.push("/assesments/pending");
+      router.push("/assessments/pending");
     } else if (e.key === "5") {
-      router.push("/assesments/completed");
+      router.push("/assessments/completed");
+    } else if (e.key === "6") {
+      router.push("/assessments");
     }
   };
 

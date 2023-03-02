@@ -1,8 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { Layout, Steps, theme, Breadcrumb } from "antd";
-import { HomeFilled } from "@ant-design/icons";
+import { Layout, Steps, theme, Breadcrumb, Badge, Avatar } from "antd";
+import { HomeFilled, BellTwoTone } from "@ant-design/icons";
 
 const assesments: React.FC = () => {
   const router = useRouter();
@@ -21,7 +21,30 @@ const assesments: React.FC = () => {
   };
   return (
     <>
-      <Header style={{ padding: 0, background: colorBgContainer }} />
+      <Header
+        style={{ padding: 0, background: colorBgContainer }}
+        className="d-flex flex-row-reverse"
+      >
+        <div>
+          <Badge count={3} className="me-3" style={{ fontSize: "13px" }}>
+            <Avatar
+              size={35}
+              shape="circle"
+              style={{ backgroundColor: "white" }}
+              icon={
+                <BellTwoTone style={{ fontSize: "22px" }} className="mb-3" />
+              }
+            />
+          </Badge>{" "}
+          <Avatar
+            style={{ backgroundColor: "#f56a00", verticalAlign: "middle" }}
+            size={35}
+            className="me-5"
+          >
+            U
+          </Avatar>
+        </div>
+      </Header>
       <Content style={{ margin: "0 16px" }}>
         <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
           <Breadcrumb.Item>

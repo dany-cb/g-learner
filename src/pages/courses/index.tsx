@@ -1,6 +1,16 @@
 import React from "react";
-import { Layout, Input, Breadcrumb, theme, Card, Col, Row } from "antd";
-import { HomeFilled } from "@ant-design/icons";
+import {
+  Layout,
+  Input,
+  Breadcrumb,
+  theme,
+  Card,
+  Col,
+  Row,
+  Avatar,
+  Badge,
+} from "antd";
+import { HomeFilled, BellTwoTone } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
 import test from "../../../assets/images/test.png";
@@ -17,7 +27,10 @@ const Courses = () => {
 
   return (
     <>
-      <Header style={{ padding: 0, background: colorBgContainer }}>
+      <Header
+        style={{ padding: 0, background: colorBgContainer }}
+        className="d-flex justify-content-between"
+      >
         <Search
           placeholder="Search here"
           allowClear
@@ -29,6 +42,25 @@ const Courses = () => {
             marginLeft: 50,
           }}
         />
+        <div>
+          <Badge count={3} className="me-3" style={{ fontSize: "13px" }}>
+            <Avatar
+              size={35}
+              shape="circle"
+              style={{ backgroundColor: "white" }}
+              icon={
+                <BellTwoTone style={{ fontSize: "22px" }} className="mb-3" />
+              }
+            />
+          </Badge>{" "}
+          <Avatar
+            style={{ backgroundColor: "#f56a00", verticalAlign: "middle" }}
+            size={35}
+            className="me-5"
+          >
+            U
+          </Avatar>
+        </div>
       </Header>
       <Content style={{ margin: "0 16px" }}>
         <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
