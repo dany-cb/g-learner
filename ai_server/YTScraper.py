@@ -19,7 +19,7 @@ class YTScraper:
         self.generate_video_data()
 
     def __retrieve_desc_from_link(self, video_link):
-        soup = bs(requests.get(video_link).content)
+        soup = bs(requests.get(video_link).content, 'html.parser')
         pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
         description = pattern.findall(str(soup))[0].replace('\\n','\n')
         # self.driver.execute_script("window.open('about:blank', 'secondtab');")

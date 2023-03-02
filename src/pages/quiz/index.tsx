@@ -74,6 +74,8 @@ const Quiz = () => {
     fetchData();
   }, []);
 
+  var date = new Date();
+  
   return (
     <>
       <Header
