@@ -73,8 +73,7 @@ const Quiz = () => {
 
     fetchData();
   }, []);
-
-  var date = new Date();
+  
   
   return (
     <>
@@ -147,7 +146,9 @@ const Quiz = () => {
               );
             })
           }
-          <p>Deadline: {item.deadline}</p>
+          <p>Deadline Date :{item.deadline.split("T")[0]}</p>
+          <p>Deadline Time :{item.deadline.split("T")[1].split("+")}</p>
+
         </Card>
             );
           })
