@@ -118,24 +118,26 @@ const Quiz = () => {
           }}
           className="p-5 d-flex justify-content-center align-items-center"
         >
-       
-         
+          <div className="row row-cols-3">
+            
         {
           data?.map((item,i)=> {
-    
             return (
               <Card
-              title={item.title}
+              
           className={`quiz-container border m-3`}
           hoverable={true}
           bordered={true}
           key={i}
-          style={{width:"350px",height:"300px"}}
+          style={{width:"370px",height:"300px"}}
           
         >
+          <h6>{item.title}</h6>
+          <hr />
+
           {
             item.tags.split(" ")?.map((it,j)=>{
-              {console.log(it)}
+              
               return(
                 <Tag color="magenta" className="rounded-pill m-1" key={j}>
                   {it}
@@ -143,11 +145,13 @@ const Quiz = () => {
               );
             })
           }
+          <p>Deadline: {item.deadline}</p>
         </Card>
             );
           })
-        }
-     
+         
+        } 
+          </div>
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
