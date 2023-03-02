@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Layout, Card, Breadcrumb, theme, Input, Avatar, Badge } from "antd";
+import { Layout, Card, Breadcrumb, theme, Input, Avatar, Badge, Tag, Row, Col } from "antd";
 import { HomeFilled, BellTwoTone } from "@ant-design/icons";
 import Link from "next/link";
 import { quiz } from "../../../assets/data/quiz";
@@ -118,64 +118,36 @@ const Quiz = () => {
           }}
           className="p-5 d-flex justify-content-center align-items-center"
         >
-          <Card
-            className={`quiz-container border`}
-            hoverable={true}
-            bordered={true}
-          >
-            {!showResult ? (
-              <div>
-                <div>
-                  <span className="active-question-no">
-                    {addLeadingZero(activeQuestion + 1)}
-                  </span>
-                  <span className="total-question">
-                    /{addLeadingZero(questions.length)}
-                  </span>
-                </div>
-                <h2>{question}</h2>
-                <ul>
-                  {choices.map((answer, index) => (
-                    <li
-                      onClick={() => onAnswerSelected(answer, index)}
-                      key={answer}
-                      className={
-                        selectedAnswerIndex === index ? "selected-answer" : null
-                      }
-                    >
-                      {answer}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex-right">
-                  <button
-                    onClick={onClickNext}
-                    disabled={selectedAnswerIndex === null}
-                  >
-                    {activeQuestion === questions.length - 1
-                      ? "Finish"
-                      : "Next"}
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="result">
-                <h3>Result</h3>
-                <p>
-                  Total Question: <span>{questions.length}</span>
-                </p>
-                <p>
-                  Total Score:<span> {result.score}</span>
-                </p>
-                <p>
-                  Correct Answers:<span> {result.correctAnswers}</span>
-                </p>
-                <p>
-                  Wrong Answers:<span> {result.wrongAnswers}</span>
-                </p>
-              </div>
-            )}
-          </Card>
+       
+         
+        {
+          data?.map((item,i)=> {
+    
+            return (
+              <Card
+              title={item.title}
+          className={`quiz-container border m-3`}
+          hoverable={true}
+          bordered={true}
+          key={i}
+          style={{width:"350px",height:"300px"}}
+          
+        >
+          {
+            item.tags.split(" ")?.map((it,j)=>{
+              {console.log(it)}
+              return(
+                <Tag color="magenta" className="rounded-pill m-1" key={j}>
+                  {it}
+                </Tag>
+              );
+            })
+          }
+        </Card>
+            );
+          })
+        }
+     
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
