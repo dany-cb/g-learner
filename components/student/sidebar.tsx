@@ -31,7 +31,7 @@ function getItem(
 const items: MenuItem[] = [
   getItem("My Courses", "1", <FolderOpenFilled />),
   getItem("Feed", "2", <CodeSandboxCircleFilled />),
-  getItem("Assesments", "sub1", <DashboardFilled />, [
+  getItem("Assesments", "6", <DashboardFilled />, [
     getItem("Ongoing", "3"),
     getItem("Pending", "4"),
     getItem("Completed", "5"),
@@ -54,8 +54,12 @@ const Sidebar: React.FC<Props> = ({ children }) => {
       router.push("/courses");
     } else if (e.key === "2") {
       router.push("/feed");
-    } else if (e.key === "6") {
-      router.push("/quiz");
+    } else if (e.key === "3") {
+      router.push("/assesments/ongoing");
+    } else if (e.key === "4") {
+      router.push("/assesments/pending");
+    } else if (e.key === "5") {
+      router.push("/assesments/completed");
     }
   };
 
