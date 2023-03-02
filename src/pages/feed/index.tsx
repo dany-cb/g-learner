@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import test from "../../../assets/images/test.png";
+import {getFeed} from "utils/services";
 
 const Feed = () => {
   const { Content, Header, Footer } = Layout;
@@ -26,6 +27,9 @@ const Feed = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const onSearch = (value: string) => console.log(value);
+
+  // const fetchFeed = async () => {
+    
 
   return (
     <>
