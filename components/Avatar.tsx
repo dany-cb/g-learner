@@ -70,14 +70,14 @@ export default function Avatar({
   };
 
   return (
-    <div>
+    <div className="text-center">
       {avatarUrl ? (
         <Image
           src={avatarUrl}
           alt="Avatar"
           height={size}
           width={size}
-          className="avatar image"
+          className="avatar image rounded-circle"
           //   style={{ height: size, width: size }}
         />
       ) : (

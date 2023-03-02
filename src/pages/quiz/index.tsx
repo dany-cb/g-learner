@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Layout, Card, Breadcrumb, theme, Input } from "antd";
 import { HomeFilled } from "@ant-design/icons";
 import Link from "next/link";
 import { quiz } from "../../../assets/data/quiz";
 import style from "../../styles/Quiz.module.css";
+import { supabase } from "../../../utils/initSupabase";
 
 const Quiz = () => {
   const { Content, Header, Footer } = Layout;
@@ -55,6 +56,24 @@ const Quiz = () => {
   };
 
   const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase.from("quiz").select("*");
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setData(data);
+      console.log(data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>

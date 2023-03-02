@@ -1,15 +1,8 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import { Roboto } from "@next/font/google";
-import { Layout, Menu, Button, Popover } from "antd";
+import { Layout, Button, Popover } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 import Link from "next/link";
-
-const roboto = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 Home.noBaseLayout = true;
 

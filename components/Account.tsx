@@ -6,7 +6,7 @@ import {
 } from "@supabase/auth-helpers-react";
 import Avatar from "./Avatar";
 
-export default function Account({ session }: { session: Session }) {
+export default function Account() {
   const supabase = useSupabaseClient<any>();
   const user = useUser();
   const [loading, setLoading] = useState(true);
@@ -18,7 +18,7 @@ export default function Account({ session }: { session: Session }) {
   useEffect(() => {
     getProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
+  }, []);
 
   async function getProfile() {
     try {
@@ -88,7 +88,7 @@ export default function Account({ session }: { session: Session }) {
     <div className="form-widget">
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <input id="email" type="text" value={user.email} disabled />
       </div>
       <div>
         <label htmlFor="username">Username</label>
