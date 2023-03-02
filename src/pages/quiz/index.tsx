@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Layout, Card, Breadcrumb, theme, Input, Avatar, Badge, Tag, Row, Col } from "antd";
+import { Layout, Card, Breadcrumb, theme, Input, Avatar, Badge, Tag, Button } from "antd";
 import { HomeFilled, BellTwoTone } from "@ant-design/icons";
 import Link from "next/link";
 import { quiz } from "../../../assets/data/quiz";
@@ -73,8 +73,7 @@ const Quiz = () => {
 
     fetchData();
   }, []);
-
-  var date = new Date();
+  
   
   return (
     <>
@@ -147,7 +146,12 @@ const Quiz = () => {
               );
             })
           }
-          <p>Deadline: {item.deadline}</p>
+          <p className="mt-5">Deadline Date :{item.deadline.split("T")[0]}</p>
+          <p>Deadline Time :{item.deadline.split("T")[1].split("+")[0]}</p>
+          <Button type="primary" block>
+      Click here
+    </Button>
+
         </Card>
             );
           })
