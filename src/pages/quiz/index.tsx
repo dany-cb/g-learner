@@ -147,7 +147,7 @@ const Quiz = () => {
             })
           }
           <p className="mt-5">Deadline Date :{item.deadline.split("T")[0]}</p>
-          <p className="mt-n2">Deadline Time :{item.deadline.split("T")[1].split("+")[0]}</p>
+          <p>Deadline Time :{item.deadline.split("T")[1].split("+")[0]}</p>
 
         </Card>
             );
