@@ -31,12 +31,12 @@ function getItem(
 const items: MenuItem[] = [
   getItem("My Courses", "1", <FolderOpenFilled />),
   getItem("Feed", "2", <CodeSandboxCircleFilled />),
-  getItem("Assignment", "sub1", <DashboardFilled />, [
+  getItem("Assesments", "sub1", <DashboardFilled />, [
     getItem("Ongoing", "3"),
     getItem("Pending", "4"),
     getItem("Completed", "5"),
   ]),
-  getItem("Quiz", "6", <ExperimentFilled />),
+  // getItem("Quiz", "6", <ExperimentFilled />),
 ];
 
 interface Props {
