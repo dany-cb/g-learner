@@ -1,61 +1,53 @@
 import { useState, useEffect } from "react";
-import { Layout, Card, Popover, Button } from "antd";
+import { Layout, Card, Popover, Button, Input, Alert } from "antd";
 import { AiOutlineDownCircle } from "react-icons/ai";
 import { RiCake2Line } from "react-icons/ri";
 import { FiBookOpen } from "react-icons/fi";
 import { BsArrowRightCircle } from "react-icons/bs";
-import {
-  useUser,
-  useSupabaseClient,
-  Session,
-} from "@supabase/auth-helpers-react";
+import { useUser } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import Head from "next/head";
-import Image from "next/image";
 import Avatar from "components/Avatar";
+import { supabase } from "utils/initSupabase";
+import { useRouter } from "next/router";
+import { BiEdit } from "react-icons/bi";
 
 const { Header } = Layout;
 
 const Profile = () => {
-  const supabase = useSupabaseClient<any>();
   const user = useUser();
-  const [loading, setLoading] = useState(true);
+  const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [website, setWebsite] = useState<string>("");
   const [full_name, setFullName] = useState<string>("");
   const [avatar_url, setAvatarUrl] = useState<string>("");
+  const [edit, setEdit] = useState<boolean>(false);
+  const [alert, setAlert] = useState<boolean>(false);
 
   useEffect(() => {
-    getProfile();
+    if (user) {
+      getProfile();
+    } else {
+      router.push("/login");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function getProfile() {
-    try {
-      setLoading(true);
-      if (!user) throw new Error("No user");
+    let { data, error, status } = await supabase
+      .from("profiles")
+      .select(`username, full_name, website, avatar_url`)
+      .eq("id", user.id)
+      .single();
 
-      let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, full_name, website, avatar_url`)
-        .eq("id", user.id)
-        .single();
-
-      if (error && status !== 406) {
-        throw error;
-      }
-
-      if (data) {
-        setUsername(data.username);
-        setFullName(data.full_name);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-      }
-    } catch (error) {
-      alert("Error loading user data!");
-      console.log(error);
-    } finally {
-      setLoading(false);
+    if (data) {
+      setUsername(data.username);
+      setFullName(data.full_name);
+      setWebsite(data.website);
+      setAvatarUrl(data.avatar_url);
+      console.log(data);
+    } else if (error && status !== 406) {
+      console.log("No profile found");
     }
   }
 
@@ -70,32 +62,33 @@ const Profile = () => {
     website: String;
     avatar_url: String;
   }) {
-    try {
-      setLoading(true);
-      if (!user) throw new Error("No user");
+    const updates = {
+      id: user.id,
+      username,
+      full_name,
+      website,
+      avatar_url,
+      updated_at: new Date().toISOString(),
+    };
 
-      const updates = {
-        id: user.id,
-        username,
-        full_name,
-        website,
-        avatar_url,
-        updated_at: new Date().toISOString(),
-      };
-
-      let { error } = await supabase.from("profiles").upsert(updates);
-      if (error) throw error;
-      alert("Profile updated!");
-    } catch (error) {
-      alert("Error updating the data!");
-      console.log(error);
-    } finally {
-      setLoading(false);
+    let { error } = await supabase.from("profiles").upsert(updates);
+    if (error) {
+      console.log("Error updating profile", error);
+    } else {
+      setAlert(true);
     }
   }
 
   const content = (
     <div className="text-center">
+      {alert && (
+        <div className="vh-100">
+          <div className="position-absolute bottom-0 end-0">
+            <Alert message="Success Tips" type="success" showIcon />
+          </div>
+        </div>
+      )}
+
       <Button
         className="btn-grad border-0 btn-sm rounded mb-2"
         onClick={() => {
@@ -182,36 +175,93 @@ const Profile = () => {
           style={{ width: "30rem" }}
           className="shadow border-0 py-2 my-3 text-center"
         >
-          <Avatar
-            uid={user?.id!}
-            url={avatar_url}
-            size={150}
-            onUpload={(url) => {
-              setAvatarUrl(url);
-              updateProfile({
-                username,
-                full_name,
-                website,
-                avatar_url: url,
-              });
-            }}
-          />
-          <h2 className="gradient-text mt-4">
-            {full_name ? full_name : "John Doe"}
-          </h2>
-          <p>
-            I{`'`}m an aspiring web developer and I{`'`}m currently learning
-            ReactJS. I{`'`}m also a huge fan of anime and I love to play video
-            games.
-          </p>
-          <Button className="btn-grad border-0 px-3 shadow">
-            <RiCake2Line className="mb-1 me-2" />
-            Birthday: 1-1-2000
-          </Button>
-          <Button className="btn-grad border-0 px-3 shadow mt-3">
-            <FiBookOpen className="mb-1 me-2" />
-            Currently: Working as a Web Developer
-          </Button>
+          {!edit ? (
+            <div>
+              <div className="d-flex justify-content-between align-items-start">
+                <span></span>
+                <Avatar uid={user?.id!} url={avatar_url} size={150} />
+                {/* button */}
+                <Button
+                  className="btn-sm rounded-circle px-2 py-1"
+                  onClick={() => {
+                    setEdit(true);
+                  }}
+                >
+                  <BiEdit className="edit-icon" />
+                </Button>
+              </div>
+              <h2 className="gradient-text mt-4">
+                {full_name ? full_name : "John Doe"}
+              </h2>
+              <p>
+                I{`'`}m an aspiring web developer and I{`'`}m currently learning
+                ReactJS. I{`'`}m also a huge fan of anime and I love to play
+                video games.
+              </p>
+              <Button className="btn-grad border-0 px-3 shadow">
+                <RiCake2Line className="mb-1 me-2" />
+                Birthday: 1-1-2000
+              </Button>
+              <Button className="btn-grad border-0 px-3 shadow mt-3">
+                <FiBookOpen className="mb-1 me-2" />
+                Currently: Working as a Web Developer
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Avatar
+                uid={user?.id!}
+                url={avatar_url}
+                size={150}
+                onUpload={(url) => {
+                  setAvatarUrl(url);
+                  updateProfile({
+                    username,
+                    full_name,
+                    website,
+                    avatar_url: url,
+                  });
+                }}
+              />
+              <Input
+                addonBefore={"Name"}
+                placeholder={full_name}
+                onChange={(e) => {
+                  setFullName(e.target.value);
+                }}
+              />
+              <Input
+                className="mt-2"
+                addonBefore={"Username"}
+                placeholder={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+              <Input
+                className="mt-2"
+                addonBefore={"Website"}
+                placeholder={website}
+                onChange={(e) => {
+                  setWebsite(e.target.value);
+                }}
+              />
+              <Button
+                className="btn-grad border-0 px-3 shadow mt-3"
+                onClick={() => {
+                  updateProfile({
+                    username,
+                    full_name,
+                    website,
+                    avatar_url,
+                  });
+                  setEdit(false);
+                }}
+              >
+                Submit
+              </Button>
+            </div>
+          )}
         </Card>
       </section>
       <section className="container mt-5">
