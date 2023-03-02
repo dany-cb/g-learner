@@ -11,27 +11,26 @@ const Quizpage = () =>{
     const {
         token: { colorBgContainer },
       } = theme.useToken();
-      const onSearch = (value: string) => console.log(value);
       const router = useRouter();
+      const name = router.asPath.split("/")[2];
+      console.log("path",name,typeof name);
       
       const [qns, setQns] = useState([]);
       
-      
-      
+
+
       useEffect(() => {
-        
         const fetchData = async () => {
-      const { id } = router.query;
-      console.log(id);
-      
+        
         const { data, error } = await supabase
-          .from("quiz")
+          .from("questions")
           .select("*")
-          .eq("id", 1);
+          .eq("quiz_id", name );
         if (error) {
           console.log(error);
         } else {
           setQns(data);
+          console.log(data);
         }
      
     };
