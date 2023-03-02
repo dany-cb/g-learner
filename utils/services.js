@@ -13,10 +13,10 @@ export const request = async (requestOptions) => {
   return response;
 };
 
-export const getAllQuiz = async () => {
+export const getFeed = async () => {
   const requestOptions = {
     method: "GET",
-    url: "http://localhost:3000/quiz",
+    url: "http://localhost:5000/",
   };
   const response = await request(requestOptions);
   return response;

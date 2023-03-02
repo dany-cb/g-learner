@@ -244,51 +244,47 @@ model profiles {
 }
 
 model quiz {
-  id           BigInt      @id @default(autoincrement())
   title        String?
   subcode      String
-  deadline     DateTime?   @db.Timestamptz(6)
   score        Int?
-  submitted_on DateTime?   @db.Timestamptz(6)
+  submitted_on DateTime? @db.Timestamptz(6)
   repeat_count Int?
   tags         String?
-  questions    questions[]
-  users        users?      @relation(fields: [usersId], references: [id])
-  usersId      String?     @db.Uuid
+  usersId      String?   @db.Uuid
+  id           Int       @id @db.SmallInt
+  deadline     DateTime? @db.Timestamptz(6)
+  users        users?    @relation(fields: [usersId], references: [id])
 
   @@schema("public")
 }
 
 model questions {
-  id       BigInt    @id @default(autoincrement())
-  question String?
+  id       Int     @id @db.SmallInt
   quiz_id  BigInt
-  answers  answers[]
-  quiz     quiz      @relation(fields: [quiz_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  question String?
 
   @@index([quiz_id])
   @@schema("public")
 }
 
 model answers {
-  id          BigInt    @id @default(autoincrement())
   title       String?
-  question_id BigInt
   is_correct  Boolean?
-  questions   questions @relation(fields: [question_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id          Int      @id @db.SmallInt
+  question_id BigInt
 
   @@index([question_id])
   @@schema("public")
 }
 
 model assignments {
-  id       BigInt    @id @default(autoincrement())
+  id       Int       @id @db.SmallInt
   title    String?
   subcode  String
   deadline DateTime? @db.Timestamptz(6)
   score    Int?
-  total    Int?
   usersId  String?   @db.Uuid
+  total    Int?
 
   @@schema("public")
 }

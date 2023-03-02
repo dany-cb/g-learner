@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Layout, Card, Breadcrumb, theme, Input, Avatar, Badge, Tag, Button } from "antd";
 import { HomeFilled, BellTwoTone } from "@ant-design/icons";
 import Link from "next/link";
-import { quiz } from "../../../assets/data/quiz";
 import { supabase } from "../../../utils/initSupabase";
 
 const Quiz = () => {
@@ -12,49 +11,6 @@ const Quiz = () => {
     token: { colorBgContainer },
   } = theme.useToken();
   const onSearch = (value: string) => console.log(value);
-
-  const [activeQuestion, setActiveQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [showResult, setShowResult] = useState(false);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
-  const [result, setResult] = useState({
-    score: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-  });
-
-  const { questions } = quiz;
-  const { question, choices, correctAnswer } = questions[activeQuestion];
-
-  const onClickNext = () => {
-    setSelectedAnswerIndex(null);
-    setResult((prev) =>
-      selectedAnswer
-        ? {
-            ...prev,
-            score: prev.score + 5,
-            correctAnswers: prev.correctAnswers + 1,
-          }
-        : { ...prev, wrongAnswers: prev.wrongAnswers + 1 }
-    );
-    if (activeQuestion !== questions.length - 1) {
-      setActiveQuestion((prev) => prev + 1);
-    } else {
-      setActiveQuestion(0);
-      setShowResult(true);
-    }
-  };
-
-  const onAnswerSelected = (answer, index) => {
-    setSelectedAnswerIndex(index);
-    if (answer === correctAnswer) {
-      setSelectedAnswer(true);
-    } else {
-      setSelectedAnswer(false);
-    }
-  };
-
-  const addLeadingZero = (number) => (number > 9 ? number : `0${number}`);
 
   const [data, setData] = useState([]);
 
@@ -130,7 +86,7 @@ const Quiz = () => {
           hoverable={true}
           bordered={true}
           key={i}
-          style={{width:"370px",height:"300px"}}
+          style={{width:"370px",minHeight:"300px"}}
           
         >
           <h6>{item.title}</h6>
@@ -140,7 +96,7 @@ const Quiz = () => {
             item.tags.split(" ")?.map((it,j)=>{
               
               return(
-                <Tag color="magenta" className="rounded-pill m-1" key={j}>
+                <Tag color="blue" className="rounded-pill m-1" key={j}>
                   {it}
                 </Tag>
               );
@@ -148,9 +104,7 @@ const Quiz = () => {
           }
           <p className="mt-5">Deadline Date :{item.deadline.split("T")[0]}</p>
           <p>Deadline Time :{item.deadline.split("T")[1].split("+")[0]}</p>
-          <Button type="primary" block>
-      Click here
-    </Button>
+          <Button type="primary" block style={{paddingBottom:"30px"}} href={`/quiz/${item.id}`}>Click here</Button>
 
         </Card>
             );
