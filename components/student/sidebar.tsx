@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ExperimentFilled,
   FolderOpenFilled,
@@ -45,6 +45,7 @@ interface Props {
 
 const Sidebar: React.FC<Props> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const [defaultKey, setDefaultKey] = useState(["1"]);
   const router = useRouter();
 
   const onClick: MenuProps["onClick"] = (e) => {
@@ -64,6 +65,22 @@ const Sidebar: React.FC<Props> = ({ children }) => {
       router.push("/assessments");
     }
   };
+
+  useEffect(() => {
+    if (router.pathname === "/courses") {
+      setDefaultKey(["1"]);
+    } else if (router.pathname === "/feed") {
+      setDefaultKey(["2"]);
+    } else if (router.pathname === "/assessments/ongoing") {
+      setDefaultKey(["3"]);
+    } else if (router.pathname === "/assessments/pending") {
+      setDefaultKey(["4"]);
+    } else if (router.pathname === "/assessments/completed") {
+      setDefaultKey(["5"]);
+    } else if (router.pathname === "/assessments") {
+      setDefaultKey(["6"]);
+    }
+  }, []);
 
   return (
     <>
@@ -91,20 +108,7 @@ const Sidebar: React.FC<Props> = ({ children }) => {
           <Menu
             onClick={onClick}
             theme="dark"
-            defaultSelectedKeys={
-              () => {
-                router.pathname === "/courses"
-                  ? ["1"]
-                  : router.pathname === "/feed"
-                  ? ["2"]
-                  ? router.pathname === "/assesments/ongoing"
-                  ? ["3"]
-                  ? router.pathname === "/assesments/pending"
-                  ? ["4"]
-                  ? router.pathname === "/assesments/completed"
-                  ? ["5"]
-              }
-            }
+            defaultSelectedKeys={defaultKey}
             mode="inline"
             items={items}
           />

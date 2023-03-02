@@ -12,7 +12,7 @@ class YTScraper:
         self.search_url = "https://www.youtube.com/results?search_query=" + \
             "+".join(keywords)
         self.video_data = []
-        chromedriver_autoinstaller.install()
+        # chromedriver_autoinstaller.install()
         self.driver = webdriver.Chrome()
         
         self.generate_video_data()
@@ -47,7 +47,7 @@ class YTScraper:
         soup = self.__generate_soup(self.search_url)
         videos = self.driver.find_elements(By.XPATH,'//*[@id="contents"]/ytd-video-renderer')
         print("len", len(videos))
-        videos = videos[:1]
+        videos = videos[:3]
         for video in videos:
             vid_link = video.find_element("id", 'video-title').get_attribute("href")
             self.driver.switch_to.window(self.driver.window_handles[0])
@@ -67,7 +67,7 @@ class YTScraper:
         self.driver.close()
 
 
-scraper = YTScraper(
-    "sampling-distribution statistics central-limit-theorem density-curves probability sample-mean mean".split())
+# scraper = YTScraper(
+#     "sampling-distribution statistics central-limit-theorem density-curves probability sample-mean mean".split())
 
-print(scraper.get_video_data())
+# print(scraper.get_video_data())
