@@ -260,7 +260,7 @@ model quiz {
 
 model questions {
   id       Int     @id @db.SmallInt
-  quiz_id  BigInt
+  quiz_id  Int     @db.SmallInt
   question String?
 
   @@index([quiz_id])
@@ -271,7 +271,7 @@ model answers {
   title       String?
   is_correct  Boolean?
   id          Int      @id @db.SmallInt
-  question_id BigInt
+  question_id Int      @db.SmallInt
 
   @@index([question_id])
   @@schema("public")

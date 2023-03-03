@@ -31,6 +31,16 @@
 from flask import Flask, jsonify, request
 from YTScraper import YTScraper
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
+@app.after_request
+def after_request_func(response):
+    # CORS section
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+# end CORS section
 
 @app.route('/',methods = ['POST'])
 def login():
