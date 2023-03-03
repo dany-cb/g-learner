@@ -45,11 +45,7 @@ const Ongoing = () => {
     };
 
     fetchData();
-  }, []);
-
-      
-
-      
+  }, []);      
       useEffect(()=>{
         data.forEach((item,i)=>{
           const fetchData = async() => {
@@ -112,25 +108,27 @@ const Ongoing = () => {
             color: "black",
           }}
         >
-          <>
-          {
-            ass.map((item,i)=>{
-              <Divider orientation="left" key={i}>
-                    <h4 className="mb-0">CS8425 Computer Architecture</h4>
-                </Divider><Collapse bordered={false}>
-                        <Panel header="unit 1 Journal Assignment" key="1">
-                            <p>Sadddddd</p>
-                        </Panel>
-                        <Panel header="Unit 2 group acitivity" key="2">
-                            <p>Sadddddd</p>
-                        </Panel>
-                        <Panel header="Unit 2 quiz" key="3">
-                            <p>Sadddddd</p>
-                        </Panel>
-                    </Collapse>
-            })
-          }
-          </>
+         <>
+         {
+          ass.map((item,i)=>{
+            <p key={i}>{item.title}</p>
+          })
+         }
+          <Divider orientation="left">
+            <h4 className="mb-0">CS8425 Computer Architecture</h4>
+          </Divider>
+          <Collapse bordered={false}>
+            <Panel header="unit 1 Journal Assignment" key="1">
+              <p>Sadddddd</p>
+            </Panel>
+            <Panel header="Unit 2 group acitivity" key="2">
+              <p>Sadddddd</p>
+            </Panel>
+            <Panel header="Unit 2 quiz" key="3">
+              <p>Sadddddd</p>
+            </Panel>
+          </Collapse>
+         </>
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
