@@ -12,16 +12,15 @@ const Quizpage = () =>{
         token: { colorBgContainer },
       } = theme.useToken();
       const router = useRouter();
-      const name = router.asPath.split("/")[2];
-      console.log("path",name,typeof name);
       
       const [qns, setQns] = useState([]);
+      const name =parseInt(router.asPath.split("/")[2]);
       
-
-
+      
+      
       useEffect(() => {
         const fetchData = async () => {
-        
+          
         const { data, error } = await supabase
           .from("questions")
           .select("*")
@@ -30,9 +29,8 @@ const Quizpage = () =>{
           console.log(error);
         } else {
           setQns(data);
-          console.log(data);
+          console.log("data",data);
         }
-     
     };
 
     fetchData();

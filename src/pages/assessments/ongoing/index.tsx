@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import Link from "next/link";
 import {
   Layout,
@@ -10,6 +10,7 @@ import {
   Avatar,
 } from "antd";
 import { HomeFilled, BellTwoTone } from "@ant-design/icons";
+import { supabase } from "../../../../utils/initSupabase";
 
 const { Panel } = Collapse;
 const { Header, Content, Footer } = Layout;
@@ -18,6 +19,49 @@ const Ongoing = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const [data, setData] = useState([]);
+  const [ass, setAss]=useState([]);
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase.from("assignments").select("subcode");
+      const ndata=[];
+      const unique = data.filter(element=>{
+        const isDuplicate = ndata.includes(element.subcode);
+        if(!isDuplicate){
+          ndata.push(element.subcode);
+          return true;
+        }
+        return false;
+      })
+      if (error) {
+        console.error(error);
+        return;
+      }
+      setData(ndata);
+      console.log(ndata);
+    };
+
+    fetchData();
+  }, []);      
+      useEffect(()=>{
+        data.forEach((item,i)=>{
+          const fetchData = async() => {
+            const { data,error }= await supabase.from("assignments").select("*").eq("subcode",item);
+            if (error) {
+              console.error(error);
+              return;
+            }
+            setAss(data);
+            console.log(ass);
+          };
+          fetchData();
+          
+        })
+      }, [data])
+  
   return (
     <>
       <Header
@@ -64,6 +108,12 @@ const Ongoing = () => {
             color: "black",
           }}
         >
+         <>
+         {
+          ass.map((item,i)=>{
+            <p key={i}>{item.title}</p>
+          })
+         }
           <Divider orientation="left">
             <h4 className="mb-0">CS8425 Computer Architecture</h4>
           </Divider>
@@ -78,6 +128,7 @@ const Ongoing = () => {
               <p>Sadddddd</p>
             </Panel>
           </Collapse>
+         </>
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>

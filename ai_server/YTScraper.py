@@ -3,15 +3,20 @@ from typing import List
 import chromedriver_autoinstaller
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import json
+import time
 import requests
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import re
+from selenium.common.exceptions import TimeoutException
 
 class YTScraper:
-    def __init__(self, keywords: List[str]):
+    def __init__(self, keywords: str, no_vid:int):
         self.search_url = "https://www.youtube.com/results?search_query=" + \
-            "+".join(keywords)
+            "+".join(keywords.split())
         self.video_data = []
+        self.no_vid = no_vid
+        print(no_vid)
         # chromedriver_autoinstaller.install()
         self.driver = webdriver.Chrome()
         
@@ -21,33 +26,24 @@ class YTScraper:
         soup = bs(requests.get(video_link).content, 'html.parser')
         pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
         description = pattern.findall(str(soup))[0].replace('\\n','\n')
-        # self.driver.execute_script("window.open('about:blank', 'secondtab');")
-        # self.driver.switch_to.window("secondtab")
-        # time.sleep(3)
-        # self.driver.get(video_link)
-        # description = self.driver.find_element(By.ID, 'description-inner')
 
         if description:
             return description
         return ""
 
-    def __generate_soup(self, url):
-        self.driver.get(url)
-        html = self.driver.page_source
-        
-        soup = bs(html,'html.parser')
-        return soup
-
-    # def __generate_soup(self, url):
-    #     source = requests.get(url).text
-    #     soup = bs(source, "html.parser")
-    #     return soup
-
     def generate_video_data(self):
-        soup = self.__generate_soup(self.search_url)
+        self.driver.get(self.search_url)
+
+        delay = 3
+        try:
+            myElem = WebDriverWait(self.driver, delay).until(EC.presence_of_element_located((By.ID, 'contents')))
+            print("Page is ready!")
+        except TimeoutException:
+            print ("Loading took too much time!")
+
         videos = self.driver.find_elements(By.XPATH,'//*[@id="contents"]/ytd-video-renderer')
         print("len", len(videos))
-        videos = videos[:3]
+        videos = videos[:self.no_vid]
         for video in videos:
             vid_link = video.find_element("id", 'video-title').get_attribute("href")
             self.driver.switch_to.window(self.driver.window_handles[0])

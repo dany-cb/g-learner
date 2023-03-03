@@ -251,7 +251,7 @@ model quiz {
   repeat_count Int?
   tags         String?
   usersId      String?   @db.Uuid
-  id           Int       @id @db.SmallInt
+  id           String    @id
   deadline     DateTime? @db.Timestamptz(6)
   users        users?    @relation(fields: [usersId], references: [id])
 
