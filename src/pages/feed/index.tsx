@@ -21,8 +21,8 @@ import {
 } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
-import test from "../../../assets/images/test.png";
-import { getFeed, getArticles } from "utils/services";
+import BookDetails from "components/books";
+import { getFeedNew, getFeed, getArticles } from "utils/services";
 
 const Feed = () => {
   const { Content, Header, Footer } = Layout;
@@ -54,13 +54,12 @@ const Feed = () => {
       setFeed(response.data);
       setLoading(false);
     }
-    const fetchArticles = async () => {
-      const response = await getArticles("computer networks security cryptography");
+    const fetchNewFeed = async () => {
+      const response = await getFeedNew(tags.join(" "));
       console.log(response);
-      setFeed([...feed, ...response.data])
     }
-    // fetchArticles();
     fetchFeed();
+    fetchNewFeed();
   }, [tags])
   
 
@@ -184,6 +183,12 @@ const Feed = () => {
             ))
             }
           </div>
+          <section className="container mt-3">
+          <h3>Books Library</h3>
+          <div className="d-flex row justify-content-center">
+            <BookDetails />
+          </div>
+        </section>
         </Content>
         <Footer style={{ textAlign: "center" }}>
           G-learner ©2023 Created by Scuderia
