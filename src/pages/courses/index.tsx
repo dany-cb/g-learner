@@ -10,13 +10,13 @@ import {
   Avatar,
   Badge,
 } from "antd";
-import { HomeFilled, BellOutlined,CalendarOutlined} from "@ant-design/icons";
+import { HomeFilled, BellOutlined, CalendarOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import Image from "next/image";
 import test from "../../../assets/images/test.png";
 import { course } from "../../../assets/data/course";
 import Header2 from "components/Header2";
-
+import GeoPattern from "geopattern";
 
 const Courses = () => {
   const { Header, Content, Footer } = Layout;
@@ -25,7 +25,6 @@ const Courses = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  
 
   return (
     <>
@@ -33,12 +32,12 @@ const Courses = () => {
         <nav className="">
           <div className="d-flex justify-content-between">
             <Breadcrumb
-              style={{ minWidth: 350, backgroundColor:"#ffff" }}
+              style={{ minWidth: 350, backgroundColor: "#ffff" }}
               className="d-flex rounded-4 ps-4 pt-2"
             >
               <Breadcrumb.Item>
                 <Link href="/courses">
-                  <HomeFilled style={{fontSize:"18px"}} />
+                  <HomeFilled style={{ fontSize: "18px" }} />
                 </Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item> My Courses</Breadcrumb.Item>
@@ -50,16 +49,23 @@ const Courses = () => {
               style={{
                 width: 780,
                 marginRight: 65,
-                height: 43
+                height: 43,
               }}
             />
-            <div className="d-flex justify-content-between" style={{marginRight:85}}>
-              <Badge count={3} className="bg-light" style={{ fontSize: "13px" }}>
+            <div
+              className="d-flex justify-content-between"
+              style={{ marginRight: 85 }}
+            >
+              <Badge
+                count={3}
+                className="bg-light"
+                style={{ fontSize: "13px" }}
+              >
                 <Avatar
                   className=""
                   size={45}
                   shape="square"
-                  style={{ backgroundColor: "#201c1c", lineHeight:"31px" }}
+                  style={{ backgroundColor: "#201c1c", lineHeight: "31px" }}
                   icon={
                     <BellOutlined
                       style={{ fontSize: "20px" }}
@@ -69,7 +75,7 @@ const Courses = () => {
                 />
               </Badge>{" "}
               <Avatar
-                style={{ backgroundColor: "#201c1c", lineHeight:"31px" }}
+                style={{ backgroundColor: "#201c1c", lineHeight: "31px" }}
                 size={45}
                 shape="square"
                 className="mx-3 rounded-3"
@@ -79,8 +85,7 @@ const Courses = () => {
                     className="rounded-4"
                   />
                 }
-              />
-               {" "}
+              />{" "}
               <Avatar
                 style={{ backgroundColor: "#201c1c", verticalAlign: "middle" }}
                 size={45}
@@ -93,13 +98,13 @@ const Courses = () => {
           </div>
         </nav>
       </div>
-      
+
       <Content style={{ margin: "10px 22px" }} className="rounded-4">
         <div
           style={{
             padding: 24,
             minHeight: 360,
-            color: "black"
+            color: "black",
           }}
         >
           <Row
@@ -115,7 +120,15 @@ const Courses = () => {
                   <Card
                     className="border"
                     style={{ width: 300 }}
-                    cover={<Image alt="example" src={test} priority />}
+                    cover={
+                      <Image
+                        alt="example"
+                        src={GeoPattern.generate(item.title).toDataUri()}
+                        width={100}
+                        height={200}
+                        priority
+                      />
+                    }
                     hoverable={true}
                     title={item.subcode}
                     bordered={true}
@@ -131,7 +144,10 @@ const Courses = () => {
           </Row>
         </div>
       </Content>
-      <Footer className="m-3 rounded-4 bold" style={{ textAlign: "center" ,backgroundColor:"#fff" }}>
+      <Footer
+        className="m-3 rounded-4 bold"
+        style={{ textAlign: "center", backgroundColor: "#fff" }}
+      >
         G-learner ©2023 Created by Scuderia
       </Footer>
     </>
