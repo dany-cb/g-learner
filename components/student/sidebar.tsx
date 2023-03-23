@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import {
   ExperimentFilled,
-  FolderOpenFilled,
-  DashboardFilled,
-  CodeSandboxCircleFilled,
+  FolderOpenOutlined,
+  DashboardOutlined,
+  CodeSandboxOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Layout, Menu, Avatar } from "antd";
 import { useRouter } from "next/router";
-import style from "../../src/styles/Sidebar.module.css";
+import "../../src/styles/Sidebar.module.css";
 
 const { Sider } = Layout;
-
 type MenuItem = Required<MenuProps>["items"][number];
 
 function getItem(
@@ -29,9 +28,9 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("My Courses", "1", <FolderOpenFilled />),
-  getItem("Feed", "2", <CodeSandboxCircleFilled />),
-  getItem("Assesments", "6", <DashboardFilled />, [
+  getItem("My Courses", "1", <FolderOpenOutlined />),
+  getItem("Feed", "2", <CodeSandboxOutlined />),
+  getItem("Assesments", "6", <DashboardOutlined />, [
     getItem("Ongoing", "3"),
     getItem("Pending", "4"),
     getItem("Completed", "5"),
@@ -44,7 +43,7 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const router = useRouter();
 
   const onClick: MenuProps["onClick"] = (e) => {
@@ -67,25 +66,27 @@ const Sidebar: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh",backgroundColor:"#f4f8f0" }}>
         <Sider
-          collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
+          style={{backgroundColor:"#201c1c", height: "98.5vh", overflow:"auto", position:"sticky",top:6,left:3}}
+          className="ms-3 rounded-4"
         >
           <div>
             <Avatar
-              size={50}
+              size={45}
+              shape="square"
               style={{
-                color: "#2596be",
+                color: "#ffffff",
                 fontSize: 25,
                 marginTop: 20,
                 marginLeft: 18,
                 marginBottom: 20,
-                border: "1px solid #2596be",
+                border: "1px solid #ffffff",
               }}
             >
-              G
+              GL
             </Avatar>
           </div>
           <Menu
@@ -94,6 +95,7 @@ const Sidebar: React.FC<Props> = ({ children }) => {
             defaultSelectedKeys={["1"]}
             mode="inline"
             items={items}
+            style={{backgroundColor:"#201c1c",color:"#fff"}}
           />
         </Sider>
         <Layout className="site-layout" style={{ minHeight: "100vh" }}>

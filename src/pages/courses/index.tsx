@@ -28,9 +28,17 @@ const Courses = () => {
   return (
     <>
       <Header
-        style={{ padding: 0, background: colorBgContainer }}
-        className="d-flex justify-content-between"
+        style={{ padding: 0, background: colorBgContainer, margin:"10px" }}
+        className="d-flex justify-content-between rounded-4"
       >
+        <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
+          <Breadcrumb.Item>
+            <Link href="/courses">
+              <HomeFilled style={{ paddingLeft: 5 }} />
+            </Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item> My Courses</Breadcrumb.Item>
+        </Breadcrumb>
         <Search
           placeholder="Search here"
           allowClear
@@ -62,15 +70,7 @@ const Courses = () => {
           </Avatar>
         </div>
       </Header>
-      <Content style={{ margin: "0 16px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
-          <Breadcrumb.Item>
-            <Link href="/courses">
-              <HomeFilled style={{ paddingLeft: 5 }} />
-            </Link>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item> My Courses</Breadcrumb.Item>
-        </Breadcrumb>
+      <Content style={{ margin: "10px 18px" }} className="rounded-4">
         <div
           style={{
             padding: 24,
