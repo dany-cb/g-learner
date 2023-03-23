@@ -43,7 +43,7 @@ interface Props {
 }
 
 const Sidebar: React.FC<Props> = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [defaultKey, setDefaultKey] = useState(["1"]);
   const router = useRouter();
 
