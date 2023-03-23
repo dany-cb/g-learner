@@ -14,7 +14,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="pb-5">
         <Header />
         <section className="dot-pattern">
           <div className="container vh-75 d-flex flex-column justify-content-center align-items-center">

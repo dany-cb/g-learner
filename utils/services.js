@@ -16,7 +16,7 @@ export const request = async (requestOptions) => {
 export const getFeed = async (key) => {
   const requestOptions = {
     method: "POST",
-    url: "http://localhost:5000/",
+    url: "http://127.0.0.1:5000/",
     data: {
       keywords: key,
     },
@@ -28,7 +28,7 @@ export const getFeed = async (key) => {
 export const getFeedNew = async (key) => {
   const requestOptions = {
     method: "POST",
-    url: "http://localhost:49990/",
+    url: "http://localhost:5000/",
     data: {
       keywords: key,
     },
