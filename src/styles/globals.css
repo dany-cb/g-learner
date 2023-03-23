@@ -2,7 +2,7 @@
 
 body,
 html {
-  background-color: #f8f8f8;
+  background-color: #f4f4f4;
 }
 
 h1,
@@ -576,3 +576,10 @@ a:hover::before {
     top: -50px;
   }
 }
+
+.ant-input{
+  text-align: center;
+}
+.ant-breadcrumb-link:nth-child(even){
+  line-height: 44px;
+ }
