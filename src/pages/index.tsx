@@ -1,57 +1,11 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
-import { Layout, Button, Popover } from "antd";
+import { Card, Button } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
-import Link from "next/link";
+import Header from "components/Header";
 
 Home.noBaseLayout = true;
 
-const { Header } = Layout;
-
 export default function Home() {
-  const [modalShow, setModalShow] = useState(false);
-  const [user, setUser] = useState(false);
-  const [initial, setInitial] = useState("");
-
-  const checkUser = () => {
-    const person = JSON.parse(localStorage.getItem("user"));
-    if (person !== null) {
-      setInitial(person.username);
-      setUser(true);
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const content = (
-    <div className="text-center">
-      <Button
-        className="btn-grad border-0 btn-sm rounded mb-2"
-        onClick={() => {
-          window.location.href = "/profile";
-        }}
-      >
-        <p className="m-0">View Profile</p>
-      </Button>
-      <Button
-        className="btn-grad border-0 btn-sm rounded"
-        onClick={() => {
-          // remove from local storage
-          localStorage.removeItem("user");
-          // push to login page
-          window.location.href = "/";
-        }}
-      >
-        <p className="m-0">Logout?</p>
-      </Button>
-    </div>
-  );
-
-  useEffect(() => {
-    checkUser();
-  }, []);
-
   return (
     <>
       <Head>
@@ -61,54 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header
-          style={{ position: "sticky", top: 0, zIndex: 1, width: "100%" }}
-          className="d-flex justify-content-between align-items-center p-3"
-        >
-          <h2 className="w-25 m-0">G-Learner</h2>
-
-          <div className="w-25 d-flex justify-content-between align-items-center">
-            <Link href="/hub" className="text-reset text-decoration-none">
-              <h5 className="m-0">Feed</h5>
-            </Link>
-            <Link href="/learn" className="text-reset text-decoration-none">
-              <h5 className="m-0">Courses</h5>
-            </Link>
-            <Link href="/quiz" className="text-reset text-decoration-none">
-              <h5 className="m-0">Quiz</h5>
-            </Link>
-            <Link
-              href="/leaderboard"
-              className="text-reset text-decoration-none"
-            >
-              <h5 className="m-0">Leaderboard</h5>
-            </Link>
-            <div className="text-reset">
-              {!user ? (
-                <Button
-                  className="btn-grad border-0 btn-sm rounded mb-2"
-                  onClick={() => {
-                    setModalShow(true);
-                  }}
-                >
-                  <h6 className="m-0">Login</h6>
-                </Button>
-              ) : (
-                <Popover
-                  content={content}
-                  placement="bottomRight"
-                  title="Title"
-                  trigger="click"
-                >
-                  <Button className="btn-grad border-0 btn-sm rounded-circle p-3 btn-profile mb-2">
-                    <h6 className="m-0">A</h6>
-                  </Button>
-                </Popover>
-              )}
-            </div>
-          </div>
-        </Header>
-
+        <Header />
         <section className="dot-pattern">
           <div className="container vh-75 d-flex flex-column justify-content-center align-items-center">
             <h1 className="display-1 bold text-center gradient-text">
@@ -130,7 +37,7 @@ export default function Home() {
                 href="/"
                 size="large"
               >
-                <GithubOutlined className="me-2 pb-n5" />
+                <GithubOutlined className="me-2" />
                 Github
               </Button>
             </div>
@@ -138,6 +45,128 @@ export default function Home() {
         </section>
         <section className="container">
           <hr />
+          <footer>
+            <p className="text-center">
+              Made with ❤️ and code by{" "}
+              <a
+                href="
+                  /
+                  "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Scuderia
+              </a>
+            </p>
+          </footer>
+        </section>
+        <section className="container mt-3">
+          <h1>Feed</h1>
+          <p className="fs-5">
+            Our platform provides you with personalized learning recommendations
+            based on your interests and learning preferences. Our algorithms
+            analyze vast amounts of data to understand your unique learning
+            patterns, and suggest courses and resources that are most likely to
+            help you achieve your learning goals. Join our community of learners
+            today and experience the power of AI in personalized learning.
+          </p>
+          <div className="text-center d-flex justify-content-center align-items-center">
+            <Card
+              style={{ width: "30rem" }}
+              className="shadow border-0 py-2 my-3"
+            >
+              <div>
+                <h3 className="gradient-text">ReactJS</h3>
+                <p>
+                  React is a free and open-source front-end JavaScript library
+                  for building user interfaces based on components.
+                </p>
+                <Button className="btn-grad border-0 px-3 shadow">
+                  Start Learning!
+                </Button>
+              </div>
+            </Card>
+            <Card
+              style={{ width: "30rem" }}
+              className="shadow border-0 ms-5 py-2"
+            >
+              <div>
+                <h3 className="gradient-text">Python</h3>
+                <p>
+                  Python is a high-level programming language. Its design
+                  emphasizes code readability with the use of significant
+                  indentation.
+                </p>
+                <Button className="btn-grad border-0 px-3 shadow">
+                  Start Learning!
+                </Button>
+              </div>
+            </Card>
+          </div>
+          <hr className="mt-5" />
+        </section>
+
+        <section className="container mt-5">
+          <h1 className="text-end">Courses</h1>
+          <p className="fs-5 text-end">
+            Whether you are seeking career advice, feedback on your work, or
+            just looking for some inspiration, our forum is the place to be. So,
+            join our community today and become part of a vibrant learning
+            network where everyone is encouraged to share and grow together!
+          </p>
+          <div className="text-center d-flex justify-content-center align-items-center">
+            <Card style={{ width: "30rem" }} className="shadow border-0 py-2">
+              <div>
+                <h3 className="gradient-text">Open Forum</h3>
+                <p>
+                  Our forum is a safe and inclusive space where you can ask
+                  questions, seek advice, and engage in lively discussions on
+                  various topics related to learning and education.
+                </p>
+                <Button className="btn-grad border-0 px-3 shadow">
+                  Let{`'`}s Socialize!
+                </Button>
+              </div>
+            </Card>
+          </div>
+          <hr className="mt-5" />
+        </section>
+
+        <section className="container mt-5">
+          <h1 className="">Quiz</h1>
+          <p className="fs-5">
+            Our quizzes are designed to be interactive, engaging and
+            informative, providing instant feedback and explanations to help you
+            learn and improve. You can participate in quizzes hosted by other
+            learners or create your own and challenge others to take them. Join
+            us today and start your journey to becoming a quiz champion!
+          </p>
+          <div className="text-center d-flex justify-content-start align-items-center">
+            <Button className="btn-grad border-0 px-3 shadow me-2">
+              Be an expert Host!
+            </Button>
+            {`(or)`}
+            <Button className="btn-grad-inv border-0 px-3 shadow ms-2">
+              Be a proud Participant!
+            </Button>
+          </div>
+          <hr className="mt-5" />
+        </section>
+
+        <section className="container mt-5">
+          <h1 className="text-end">Leaderboard</h1>
+          <p className="fs-5 text-end">
+            Our leaderboard is a great way to challenge yourself, set goals, and
+            celebrate your accomplishments. It{`'`}s also an opportunity to
+            connect with other learners and form study groups, share resources
+            and collaborate on projects. So, join our platform today and see how
+            far you can climb on our leaderboard!
+          </p>
+          <div className="text-center d-flex justify-content-end align-items-center">
+            <Button className="btn-grad border-0 px-3 shadow">
+              Peek Leaderboard!
+            </Button>
+          </div>
         </section>
       </main>
     </>

@@ -45,7 +45,7 @@ const Completed = () => {
         </div>
       </Header>
       <Content style={{ margin: "0 16px" }}>
-        <Breadcrumb style={{ margin: "16px 0" }} className="d-flex">
+        <Breadcrumb style={{ margin: "16px 0" }} className="">
           <Breadcrumb.Item>
             <Link href="/courses">
               <HomeFilled style={{ paddingLeft: 5 }} />

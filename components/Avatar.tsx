@@ -11,7 +11,7 @@ export default function Avatar({
   uid: string;
   url: string;
   size: number;
-  onUpload: (url: string) => void;
+  onUpload?: (url: string) => void;
 }) {
   const supabase = useSupabaseClient<any>();
   const [avatarUrl, setAvatarUrl] = useState<string>("");
@@ -86,22 +86,24 @@ export default function Avatar({
           style={{ height: size, width: size }}
         />
       )}
-      <div style={{ width: size }}>
-        <label className="button primary block" htmlFor="single">
-          {uploading ? "Uploading ..." : "Upload"}
-        </label>
-        <input
-          style={{
-            visibility: "hidden",
-            position: "absolute",
-          }}
-          type="file"
-          id="single"
-          accept="image/*"
-          onChange={uploadAvatar}
-          disabled={uploading}
-        />
-      </div>
+      {onUpload && (
+        <div style={{ width: size }}>
+          <label className="button primary block" htmlFor="single">
+            {uploading ? "Uploading ..." : "Upload"}
+          </label>
+          <input
+            style={{
+              visibility: "hidden",
+              position: "absolute",
+            }}
+            type="file"
+            id="single"
+            accept="image/*"
+            onChange={uploadAvatar}
+            disabled={uploading}
+          />
+        </div>
+      )}
     </div>
   );
 }

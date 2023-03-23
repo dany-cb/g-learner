@@ -5,7 +5,7 @@ const nextConfig = {
 
 // add image optimization
 nextConfig.images = {
-  domains: ["gw.alipayobjects.com"],
+  domains: ["gw.alipayobjects.com", "img.youtube.com"],
 };
 
 module.exports = nextConfig;
