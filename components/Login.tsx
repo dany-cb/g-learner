@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Auth, ThemeMinimal } from "@supabase/auth-ui-react";
+import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Card } from "antd";
 import { useRouter } from "next/router";
@@ -45,7 +45,7 @@ const Login = () => {
                   },
                 },
               }}
-              appearance={{ theme: ThemeMinimal }}
+              appearance={{ theme: ThemeSupa }}
               theme="light"
             />
           )}

@@ -302,11 +302,11 @@ a:hover::before {
   background-color: rgba(255, 255, 255, 0);
 }
 
-.custom-card {
+/* .custom-card {
   background-color: rgba(139, 134, 134, 0.842);
   padding: 1rem;
   border-radius: 1rem;
-}
+} */
 
 .scroll-to-top {
   position: fixed;
