@@ -9,16 +9,25 @@ import datetime
 import string
 import tensorflow_hub
 from keybert import KeyBERT
+
 class Model:
     def __init__(self):
         self.words = []
         self.classes = []
         self.documents = []
+        nltk.download('punkt')
+        # embedding_model = tensorflow_hub.load("/app/saved_models")
+        # self.kw_model = KeyBERT(model=embedding_model)
+        self.kw_model = KeyBERT()
+        self.stemmer = LancasterStemmer()
+
+        if os.path.exists("synapses.json"):
+            os.remove("synapses.json")
         
     def getRecommendations(self, gvn_keyword="", data=[]):
         def processDesc(desc):
-            keywords = kw_model.extract_keywords(desc, stop_words='english')
-            return [keyword[0] for keyword in keywords]
+            keywords = self.kw_model.extract_keywords(desc, stop_words='english')
+            return [self.stemmer.stem(keyword[0]) for keyword in keywords]
         
         def sigmoid(x):
             output = 1/(1+np.exp(-x))
@@ -169,10 +178,6 @@ class Model:
         if not gvn_keyword:
             for datum in data:
                 training_data.append({"vid":datum["link"], "desc":datum["description"]})
-
-
-        embedding_model = tensorflow_hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
-        kw_model = KeyBERT(model=embedding_model)
 
         for pattern in training_data:
             w = processDesc(pattern['desc'])

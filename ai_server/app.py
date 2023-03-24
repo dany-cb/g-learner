@@ -15,6 +15,7 @@ def after_request_func(response):
 # end CORS section
 
 model = Model()
+scraper = YTScraper()
 
 @app.route('/',methods = ['POST'])
 def login():
@@ -26,10 +27,10 @@ def login():
       result = model.getRecommendations(keywords)
       print("result:",result)
       if (len(result)<3):
-         scraper = YTScraper(keywords, 4-len(result))
+         scraper.generate_video_data(keywords, 4-len(result))
          model.getRecommendations(data=scraper.get_video_data())
          result.extend([x["link"] for x in scraper.get_video_data()])
       return jsonify(result)
 
 if __name__ == '__main__':
-   app.run(port=5000, debug = True)
+   app.run(port=5000, debug = True, host='0.0.0.0')

@@ -9,18 +9,39 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import re
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
+
 
 class YTScraper:
-    def __init__(self, keywords: str, no_vid:int):
-        self.search_url = "https://www.youtube.com/results?search_query=" + \
-            "+".join(keywords.split())
-        self.video_data = []
-        self.no_vid = no_vid
-        print(no_vid)
+    def __init__(self):
+    
         # chromedriver_autoinstaller.install()
-        self.driver = webdriver.Chrome()
+
+        # CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
+        # WINDOW_SIZE = "1920,1080"
+        # chrome_options = Options()
+        # chrome_options.add_argument("--headless")
+        # chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
+        # chrome_options.add_argument('--no-sandbox')
+        # prefs = {"profile.managed_default_content_settings.images": 2}
+        # chrome_options.add_experimental_option("prefs", prefs)
+        # self.driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
         
-        self.generate_video_data()
+        CHROMEDRIVER_PATH = '/usr/local/bin/chromedriver'
+        options = Options()
+        options.headless = True
+
+        chrome_options = webdriver.ChromeOptions()
+        # this will disable image loading
+        chrome_options.add_argument('--blink-settings=imagesEnabled=false')
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--window-size=%s" % "640,480")
+        chrome_options.add_argument('--no-sandbox')
+        # or alternatively we can set direct preference:
+        chrome_options.add_experimental_option("prefs", {"profile.managed_default_content_settings.images": 2})
+        self.driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=options, chrome_options=chrome_options)
+
+        
 
     def __retrieve_desc_from_link(self, video_link):
         soup = bs(requests.get(video_link).content, 'html.parser')
@@ -31,7 +52,12 @@ class YTScraper:
             return description
         return ""
 
-    def generate_video_data(self):
+    def generate_video_data(self, keywords: str, no_vid:int):
+        self.search_url = "https://www.youtube.com/results?search_query=" + \
+            "+".join(keywords.split())
+        self.video_data = []
+        self.no_vid = no_vid
+        print(no_vid)
         self.driver.get(self.search_url)
 
         delay = 3
