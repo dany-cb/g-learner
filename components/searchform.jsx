@@ -52,13 +52,13 @@ const Searchform = ({ searchText }) => {
 
       <div
         id="popup1"
-        class={showValidTextModal ? "overlay modal-active" : "overlay"}
+        className={showValidTextModal ? "overlay modal-active" : "overlay"}
       >
-        <div class="popup">
-          <div class="close" onClick={() => setShowValidTextModal(false)}>
+        <div className="popup">
+          <div className="close" onClick={() => setShowValidTextModal(false)}>
             &times;
           </div>
-          <h3 class="content">Please Enter the valid text</h3>
+          <h3 className="content">Please Enter the valid text</h3>
         </div>
       </div>
     </div>

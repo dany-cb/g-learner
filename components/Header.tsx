@@ -104,7 +104,7 @@ const Header = () => {
               placement="bottomRight"
               title={
                 <>
-                  Hello, {full_name.length > 0 ? full_name : user.email}!
+                  Hello, {full_name?.length > 0 ? full_name : user.email}!
                   <hr className="mt-0" />
                 </>
               }
@@ -112,7 +112,7 @@ const Header = () => {
             >
               <div className="btn-grad border-0 btn-sm rounded-circle p-3 btn-profile text-center">
                 <h6 className="m-0">
-                  {full_name.length > 0
+                  {full_name?.length > 0
                     ? full_name[0].toUpperCase()
                     : user.email[0].toUpperCase()}
                 </h6>

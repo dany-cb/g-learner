@@ -150,8 +150,7 @@ class Model:
             training_data.append({"vid": "https://www.youtube.com/watch?v=pCbFNf0NNhQ", "desc": "Random Variable/Probability Distribution/Mean and Variance Class 12th - Probability CBSE/ISC 2021 Probability Class 12th- Random Variable/Probability Distribution/Mean/Variance/ CBSE/ISC Board Exam."})
             training_data.append({"vid": "https://www.youtube.com/watch?v=BFb0lTNP99Q", "desc": 'PROBABILITY BINOMIAL DISTRIBUTION CBSE/ISC 2021 CLASS XII 12th ( not for CBSE) PROBABILITY- BINOMIAL DISTRIBUTION CBSE 2021 CLASS XII 12th MATH. NCERT Exercise 13.5 #ProbabilityCBSE #CBSEMath2021 #BinomialDistribution © Copyright 2021, Neha Agrawal. All rights reserved.'})
             training_data.append({"vid": "https://www.youtube.com/watch?v=hfBeF8jdO6U", "desc": '''Normal Distribution | Probability | Mathematics | MMS | BCom | Engineering Heyy Guyzz!!! This is Amol Balekar. Here's the video on Normal Distribution which covers Important Numericals of Normal Distribution which is a part of Probability. So, please go through this Video to ASSURE your easy earning Marks of Normal distribution. And if you are having any doubts, then please COMMENT down in the COMMENT SECTION. I will surely try to solve your doubts #LearnOpediA#NormalDistribution#Probability'''})
-            training_data.append(
-                {"vid": "https://www.youtube.com/watch?v=VIH1DL77TN4", "desc": '''Poisson Distribution | Probability | 03 Marks | HSC (12th) Commerce
+            training_data.append({"vid": "https://www.youtube.com/watch?v=VIH1DL77TN4", "desc": '''Poisson Distribution | Probability | 03 Marks | HSC (12th) Commerce
             Heyy Guyzz!!! This is Amol Balekar. Here's the video on POISSON DISTRIBUTION which is a Subpart of PROBABILITY. This Video covers Numericals of every possible type of POISSON DISTRIBUTION which generally comes in  HSC Exam for 03 Marks for COMMERCE.
 
             So, please go through this Video to ASSURE your 03 Marks.
@@ -181,11 +180,12 @@ class Model:
 
         for pattern in training_data:
             w = processDesc(pattern['desc'])
-            
+            print("Im here")
             self.words.extend(w)
             self.documents.append((w, pattern['vid']))
             if pattern['vid'] not in self.classes:
                 self.classes.append(pattern['vid'])
+
         print(self.words)
         print(self.classes)
 
